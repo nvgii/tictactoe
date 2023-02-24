@@ -26,7 +26,9 @@ function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(""));
   const winner = whoIsWinner(squares);
+  const newGame = CreateButton();
   let status;
+  let button;
 
   function handleClick(i: number) {
     if (squares[i] || whoIsWinner(squares)) {
@@ -41,8 +43,10 @@ function Game() {
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
   }
+  //Winner
   if (winner) {
     status = "Winner: " + winner;
+    button = newGame;
   } else {
     status = "Next player " + (xIsNext ? "X" : "O");
   }
@@ -70,6 +74,7 @@ function Game() {
           <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
           <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
         </div>
+        {button}
       </Container>
     </Fragment>
   );
@@ -94,6 +99,14 @@ function whoIsWinner(squares: any[]) {
     }
   }
   return null;
+}
+
+function CreateButton() {
+  return (
+    <>
+      <Button onClick={() => window.location.reload()}>New Game</Button>
+    </>
+  );
 }
 
 export default Game;
