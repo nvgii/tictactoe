@@ -22,7 +22,6 @@ function Square({ value, onSquareClick }: gamer) {
     </>
   );
 }
-
 function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(""));
